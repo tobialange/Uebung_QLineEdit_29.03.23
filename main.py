@@ -1,5 +1,8 @@
 import sys
-from PySide6.QtCore import Qt
+
+from PyQt6 import QtGui
+from PyQt6.QtGui import QValidator, QRegularExpressionValidator
+from PySide6.QtCore import Qt, QRegularExpression
 from PySide6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLineEdit, QLabel
 
 
@@ -84,6 +87,18 @@ class MainWindow(QWidget):
         self.line_edit9.textChanged.connect(self.label9.setText)
         self.layout.addWidget(self.line_edit9)
         self.layout.addWidget(self.label9)
+
+
+        self.line_edit10 = QLineEdit()
+        self.label10 = QLabel()
+        self.line_edit10.setInputMask('>Aa-Aa 9000;#')
+        self.line_edit10.textChanged.connect(self.label10.setText)
+        self.layout.addWidget(self.line_edit10)
+        self.layout.addWidget(self.label10)
+
+        expression = QRegularExpression('A')
+        self.validator = QRegularExpressionValidator().setRegularExpression(expression)
+        self.line_edit10.setValidator()
 
 
         self.setLayout(self.layout)
